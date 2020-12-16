@@ -1,0 +1,10 @@
+
+FROM node
+COPY . /usr/local/src/app
+WORKDIR /usr/local/src/app
+RUN npm install --production
+RUN npm install chalk
+ENV REDIS_HOST=192.168.74.130:8081
+RUN node ./server.js & npm start
+ENTRYPOINT ["/usr/local/bin/node", "/usr/local/src/app/server.js"]
+EXPOSE 8080
